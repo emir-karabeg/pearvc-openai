@@ -28,6 +28,28 @@ export default function Home() {
     }
   }
 
+  const test = async () => {
+    const response = await fetch('/api/findOption', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        text: 'For customer support, press 1. For the finance department, press 2. If you have lost your bag, press 3.',
+      }),
+    })
+
+    const data = await response
+
+    if (response.status === 200) {
+      console.log(data)
+      alert('Test complete')
+    } else {
+      console.error('Error:', data)
+      alert('Failed')
+    }
+  }
+
   return (
     <main className={styles.main}>
       <input
@@ -48,6 +70,9 @@ export default function Home() {
       />
       <button className={styles.button} onClick={handleCall}>
         Action
+      </button>
+      <button className={styles.button} onClick={test}>
+        TEST
       </button>
     </main>
   )

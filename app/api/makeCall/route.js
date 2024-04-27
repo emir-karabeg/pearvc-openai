@@ -21,7 +21,7 @@ export async function POST(req, res) {
 }
 
 // Call agent
-// Tell agent number
+// Tell agent number (type on keypad)
 // Tell agent what you want to do
 
 // DB STORES CALL SID
