@@ -10,15 +10,15 @@ async function fetchCompletion(text, retries = 3, delay = 2000) {
     while (retries > 0) {
         try {
             const completion = await openai.chat.completions.create({
-                model: "gpt-3.5-turbo-0125",
+                model: "gpt-3.5-turbo-0125", // TODO change to gpt-4.0-turbo-0125
                 messages: [
                     {
                         role: "system",
-                        content: "You are a helpful assistant designed to output JSON. The user is calling an answering service and has options to choose from. Please return the JSON in the format of {option: 1} or {option: 2} and change the number depending on the menu and what the user desires.",
+                        content: "You are a helpful assistant designed to output JSON. The user is calling an answering service and has options to choose from. Please return the JSON in the format of {option: 1} or {option: 2} and change the number depending on the menu and what the user desires. The option that achieves the user goal might be nested behind more higher-level options. Choose the one that's most likely to get the user to the goal.",
                     },
                     {
                         role: "user",
-                        content: "I am calling an airline to change my flight. Please return me the option that achieves this: " + text,
+                        content: "I am calling an airline to change my flight. Please return me the option that achieves this: " + text, // TODO change to actual intent from the Twilio service
                     },
                 ],
                 response_format: { type: "json_object" },
