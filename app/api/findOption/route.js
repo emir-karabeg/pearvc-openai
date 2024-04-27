@@ -4,6 +4,9 @@
 import { NextResponse } from 'next/server';
 import OpenAI from "openai";
 
+import { createClient } from 'edgedb';
+import e from '@/dbschema/edgeql-js';
+
 const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
 async function fetchCompletion(text, retries = 3, delay = 2000) {
@@ -43,6 +46,11 @@ export async function POST(req, res) {
     const text = (await req.json()).text;
 
     console.log(text)
+
+    const selectCalls = e.select(e.Сall, () => ({
+        id: true,
+    }));
+    const posts = await selectCalls.run(client);
 
     try {
         const response = await fetchCompletion(text);
