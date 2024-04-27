@@ -50,6 +50,26 @@ export default function Home() {
     }
   }
 
+  const createCall = async () => {
+    const response = await fetch('/api/createCall', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ to: phoneNumber }),
+    })
+
+    const data = await response
+
+    if (response.status === 200) {
+      console.log(data)
+      alert('Call created! Check the console for more details.')
+    } else {
+      console.error('Error:', data)
+      alert('Failed to initiate call.')
+    }
+  }
+
   return (
     <main className={styles.main}>
       <input
@@ -73,6 +93,9 @@ export default function Home() {
       </button>
       <button className={styles.button} onClick={test}>
         TEST
+      </button>
+      <button className={styles.button} onClick={createCall}>
+        Create Call
       </button>
     </main>
   )
