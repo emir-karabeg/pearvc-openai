@@ -1,18 +1,19 @@
+import { Call } from "./../dbschema/interfaces";
 import * as edgedb from "edgedb";
-import { Movie } from "./dbschema/interfaces";
+import e from "../dbschema/edgeql-js";
 
 const client = edgedb.createClient();
 
 async function main() {
   // result will be inferred as Movie | null
-  const result = await client.querySingle<Movie>(`
-    select Movie {
-      title,
-      actors: {
-        name,
-      }
-    } filter .title = "Iron Man 2"
-  `);
+  // result will be inferred based on the query
+  const result = await e
+    .select(e.Call, () => ({
+      //   title: true,
+      //   actors: () => ({ name: true }),
+      //   filter_single: { title: "Iron Man 2" },
+    }))
+    .run(client);
 
   console.log(JSON.stringify(result, null, 2));
 }
