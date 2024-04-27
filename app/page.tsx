@@ -70,6 +70,46 @@ export default function Home() {
     }
   }
 
+  const updateNumber = async () => {
+    const response = await fetch('/api/updateNumber', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ to: phoneNumber }),
+    })
+
+    const data = await response
+
+    if (response.status === 200) {
+      console.log(data)
+      alert('Number updated! Check the console for more details.')
+    } else {
+      console.error('Error:', data)
+      alert('Failed to update number.')
+    }
+  }
+
+  const updateGoal = async () => {
+    const response = await fetch('/api/updateGoal', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ to: phoneNumber }),
+    })
+
+    const data = await response
+
+    if (response.status === 200) {
+      console.log(data)
+      alert('Number updated! Check the console for more details.')
+    } else {
+      console.error('Error:', data)
+      alert('Failed to update number.')
+    }
+  }
+
   return (
     <main className={styles.main}>
       <input
@@ -96,6 +136,12 @@ export default function Home() {
       </button>
       <button className={styles.button} onClick={createCall}>
         Create Call
+      </button>
+      <button className={styles.button} onClick={updateNumber}>
+        Update Number
+      </button>
+      <button className={styles.button} onClick={updateGoal}>
+        Update Goal
       </button>
     </main>
   )

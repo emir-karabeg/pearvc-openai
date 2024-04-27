@@ -3,11 +3,7 @@ import { NextResponse } from "next/server";
 
 const client = edgedb.createClient();
 
-async function callAgent() {
-    
-}
-
-export async function POST(req, res) {
+export async function POST(req, res) { // TODO: Change data to actual
     try {
         await client.execute(`
         insert Call {

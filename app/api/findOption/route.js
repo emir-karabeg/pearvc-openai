@@ -47,10 +47,10 @@ export async function POST(req, res) {
 
     console.log(text)
 
-    const selectCalls = e.select(e.Сall, () => ({
-        id: true,
-    }));
-    const posts = await selectCalls.run(client);
+    // const selectCalls = e.select(e.Сall, () => ({
+    //     id: true,
+    // }));
+    // const posts = await selectCalls.run(client);
 
     try {
         const response = await fetchCompletion(text);
