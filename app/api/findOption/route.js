@@ -57,4 +57,4 @@ export async function POST(req, res) {
 
 // DB:
 
-// Call ID | User number | Target phone number | Goal | Phone menu option transcription | Waiting for target | Ongoing call
+// Call ID | User number | Target phone number | Goal | Phone menu option transcription | Option list | Waiting for target | Ongoing call
